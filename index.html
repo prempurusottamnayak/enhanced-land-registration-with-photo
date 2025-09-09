@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandChain Registry - Professional Blockchain Land Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <div class="blockchain-logo">
+                <i class="fas fa-shield-alt rotating"></i>
+            </div>
+            <h2>LandChain Registry</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Initializing Professional Blockchain Network...</p>
+        </div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app" class="app hidden">
+        <!-- Dynamic Professional Background -->
+        <canvas id="background-canvas" class="background-canvas"></canvas>
+        <div class="background-overlay"></div>
+        
+        <!-- Theme Switcher -->
+        <div class="theme-switcher">
+            <button class="theme-switch-btn" id="theme-toggle">
+                <i class="fas fa-palette"></i>
+            </button>
+            <div class="theme-options hidden" id="theme-options">
+                <div class="theme-option" data-theme="corporate">
+                    <div class="theme-preview corporate-preview"></div>
+                    <span>Corporate</span>
+                </div>
+                <div class="theme-option" data-theme="blockchain">
+                    <div class="theme-preview blockchain-preview"></div>
+                    <span>Blockchain</span>
+                </div>
+                <div class="theme-option" data-theme="futuristic">
+                    <div class="theme-preview futuristic-preview"></div>
+                    <span>Futuristic</span>
+                </div>
+                <div class="theme-option" data-theme="elegant">
+                    <div class="theme-preview elegant-preview"></div>
+                    <span>Minimal</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="professional-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt logo-icon"></i>
+                        <div class="logo-text">
+                            <span class="logo-title">LandChain Registry</span>
+                            <span class="logo-subtitle">Professional Blockchain Authority</span>
+                        </div>
+                    </div>
+                    <nav class="nav-tabs">
+                        <button class="nav-tab active" data-tab="registration">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>New Registration</span>
+                        </button>
+                        <button class="nav-tab" data-tab="verification">
+                            <i class="fas fa-search"></i>
+                            <span>Verify Records</span>
+                        </button>
+                        <button class="nav-tab" data-tab="dashboard">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Dashboard</span>
+                        </button>
+                        <button class="nav-tab" data-tab="certificates">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificates</span>
+                        </button>
+                    </nav>
+                    <div class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Registration Section -->
+                <section id="registration" class="content-section active">
+                    <div class="professional-card main-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-plus-circle"></i> Professional Property Registration</h2>
+                            <p>Register your property on our advanced blockchain network for immutable ownership records</p>
+                        </div>
+                        
+                        <!-- Enhanced Progress Stepper -->
+                        <div class="progress-stepper">
+                            <div class="step active" data-step="1">
+                                <div class="step-number">1</div>
+                                <span>Owner Information</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step" data-step="2">
+                                <div class="step-number">2</div>
+                                <span>Property Details</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step" data-step="3">
+                                <div class="step-number">3</div>
+                                <span>Owner Photo</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step" data-step="4">
+                                <div class="step-number">4</div>
+                                <span>GPS Coordinates</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step" data-step="5">
+                                <div class="step-number">5</div>
+                                <span>Blockchain Registration</span>
+                                <div class="step-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- Registration Form -->
+                        <form id="registration-form" class="multi-step-form">
+                            <!-- Step 1: Owner Information -->
+                            <div class="form-step active" id="step-1">
+                                <h3>Owner Information</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label" for="ownerName">Full Name</label>
+                                        <input type="text" id="ownerName" class="form-control" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="ownerNIC">National ID Number</label>
+                                        <input type="text" id="ownerNIC" class="form-control" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="ownerPhone">Phone Number</label>
+                                        <input type="tel" id="ownerPhone" class="form-control" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="ownerEmail">Email Address</label>
+                                        <input type="email" id="ownerEmail" class="form-control" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="professional-btn btn-primary" onclick="nextStep()">
+                                        Next Step <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Property Details -->
+                            <div class="form-step" id="step-2">
+                                <h3>Property Details</h3>
+                                <div class="form-grid">
+                                    <div class="form-group full-width">
+                                        <label class="form-label" for="propertyAddress">Property Address</label>
+                                        <textarea id="propertyAddress" class="form-control" rows="3" required></textarea>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="district">District</label>
+                                        <input type="text" id="district" class="form-control" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="province">Province</label>
+                                        <select id="province" class="form-control" required>
+                                            <option value="">Select Province</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Maharashtra">Maharashtra</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                            <option value="West Bengal">West Bengal</option>
+                                            <option value="Gujarat">Gujarat</option>
+                                            <option value="Rajasthan">Rajasthan</option>
+                                            <option value="Punjab">Punjab</option>
+                                            <option value="Haryana">Haryana</option>
+                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        </select>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="landSize">Land Size (acres)</label>
+                                        <input type="number" id="landSize" class="form-control" step="0.1" min="0.1" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="landType">Land Type</label>
+                                        <select id="landType" class="form-control" required>
+                                            <option value="">Select Type</option>
+                                            <option value="Residential">Residential</option>
+                                            <option value="Commercial">Commercial</option>
+                                            <option value="Agricultural">Agricultural</option>
+                                            <option value="Industrial">Industrial</option>
+                                            <option value="Recreational">Recreational</option>
+                                        </select>
+                                        <div class="error-message"></div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="professional-btn btn-secondary" onclick="previousStep()">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <button type="button" class="professional-btn btn-primary" onclick="nextStep()">
+                                        Next Step <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Owner Photo -->
+                            <div class="form-step" id="step-3">
+                                <h3>Owner Photo Upload</h3>
+                                <div class="photo-upload-section">
+                                    <div class="photo-guidelines">
+                                        <div class="guideline-header">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span>Photo Guidelines</span>
+                                        </div>
+                                        <ul class="guidelines-list">
+                                            <li>Upload a clear portrait photo of the property owner</li>
+                                            <li>Supported formats: JPG, PNG, WEBP</li>
+                                            <li>Maximum file size: 30MB</li>
+                                            <li>Photo will appear in your property certificate</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="photo-upload-container">
+                                        <div class="photo-drop-zone" id="photoDropZone">
+                                            <div class="drop-zone-content">
+                                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                                <h4>Upload Owner Photo</h4>
+                                                <p>Drag and drop your photo here, or click to browse</p>
+                                                <button type="button" class="professional-btn btn-accent" onclick="triggerPhotoUpload()">
+                                                    <i class="fas fa-folder-open"></i> Choose Photo
+                                                </button>
+                                                <input type="file" id="ownerPhoto" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                                            </div>
+                                        </div>
+
+                                        <div class="photo-preview-section hidden" id="photoPreviewSection">
+                                            <div class="photo-preview-container">
+                                                <div class="photo-preview-frame">
+                                                    <img id="photoPreview" class="photo-preview-image" alt="Owner Photo Preview">
+                                                    <div class="photo-overlay">
+                                                        <div class="photo-info">
+                                                            <span id="photoFileName"></span>
+                                                            <span id="photoFileSize"></span>
+                                                        </div>
+                                                        <div class="photo-actions">
+                                                            <button type="button" class="photo-action-btn" onclick="removePhoto()" title="Remove Photo">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                            <button type="button" class="photo-action-btn" onclick="triggerPhotoUpload()" title="Change Photo">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="photo-status">
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <span>Photo ready for certificate</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="photo-error-message hidden" id="photoErrorMessage">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="professional-btn btn-secondary" onclick="previousStep()">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <button type="button" class="professional-btn btn-primary" onclick="nextStep()" id="photoNextBtn">
+                                        Next Step <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: GPS Coordinates -->
+                            <div class="form-step" id="step-4">
+                                <h3>GPS Coordinates</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label" for="latitude">Latitude</label>
+                                        <input type="number" id="latitude" class="form-control" step="0.000001" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="longitude">Longitude</label>
+                                        <input type="number" id="longitude" class="form-control" step="0.000001" required>
+                                        <div class="error-message"></div>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <button type="button" class="professional-btn btn-accent" onclick="getCurrentLocation()">
+                                            <i class="fas fa-map-marker-alt"></i> Get Current Location
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="professional-btn btn-secondary" onclick="previousStep()">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <button type="button" class="professional-btn btn-primary" onclick="nextStep()">
+                                        Register on Blockchain <i class="fas fa-link"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: Blockchain Processing -->
+                            <div class="form-step" id="step-5">
+                                <div class="blockchain-processing">
+                                    <div class="processing-animation">
+                                        <i class="fas fa-link spinning"></i>
+                                    </div>
+                                    <h3>Processing Professional Blockchain Registration</h3>
+                                    <div class="processing-steps">
+                                        <div class="processing-step" id="hash-generation">
+                                            <i class="fas fa-clock"></i> Generating Cryptographic Hash...
+                                        </div>
+                                        <div class="processing-step" id="block-creation">
+                                            <i class="fas fa-clock"></i> Creating Immutable Block...
+                                        </div>
+                                        <div class="processing-step" id="network-broadcast">
+                                            <i class="fas fa-clock"></i> Broadcasting to Network...
+                                        </div>
+                                        <div class="processing-step" id="confirmation">
+                                            <i class="fas fa-clock"></i> Awaiting Network Confirmation...
+                                        </div>
+                                    </div>
+                                    <div class="registration-result hidden">
+                                        <div class="success-animation">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <h3>Registration Successful!</h3>
+                                        <div class="registration-details">
+                                            <div class="detail-item">
+                                                <label>Registration Number:</label>
+                                                <span id="reg-number" class="mono"></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <label>Certificate ID:</label>
+                                                <span id="certificate-id" class="mono"></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <label>Block Hash:</label>
+                                                <span id="block-hash" class="mono"></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <label>Transaction Hash:</label>
+                                                <span id="tx-hash" class="mono"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="button" class="professional-btn btn-accent" onclick="showCertificatePreview()">
+                                                <i class="fas fa-eye"></i> Preview Certificate
+                                            </button>
+                                            <button type="button" class="professional-btn btn-primary" onclick="resetForm()">
+                                                <i class="fas fa-plus"></i> Register Another
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Certificate Preview Modal -->
+                <div id="certificate-modal" class="modal hidden">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-content certificate-modal">
+                        <div class="modal-header">
+                            <h3><i class="fas fa-certificate"></i> Professional Property Certificate</h3>
+                            <button class="modal-close" onclick="closeCertificateModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="certificate-preview" id="certificate-preview">
+                                <!-- Certificate content will be generated here -->
+                            </div>
+                            <div class="qr-code-section">
+                                <h4>Blockchain Verification</h4>
+                                <canvas id="qr-canvas"></canvas>
+                                <p>Scan QR code to verify on blockchain</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="professional-btn btn-secondary" onclick="closeCertificateModal()">
+                                Close Preview
+                            </button>
+                            <button class="professional-btn btn-primary" onclick="downloadProfessionalCertificate()">
+                                <i class="fas fa-download"></i> Download PDF Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verification Section -->
+                <section id="verification" class="content-section">
+                    <div class="professional-card main-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-search"></i> Professional Record Verification</h2>
+                            <p>Verify the authenticity of property records on our blockchain network</p>
+                        </div>
+                        
+                        <form id="verification-form" class="verification-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="searchRegNumber">Registration Number</label>
+                                    <input type="text" id="searchRegNumber" class="form-control" placeholder="Enter registration number">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="searchOwnerNIC">Owner NIC</label>
+                                    <input type="text" id="searchOwnerNIC" class="form-control" placeholder="Enter owner NIC">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="professional-btn btn-primary full-width">
+                                        <i class="fas fa-search"></i> Verify Record
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="verification-result" class="verification-result hidden">
+                            <div class="verification-status">
+                                <div class="status-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3>Record Professionally Verified</h3>
+                                <p>This property record has been successfully verified on the blockchain</p>
+                            </div>
+                            
+                            <div class="verified-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <label>Owner Name:</label>
+                                        <span id="verified-owner"></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>Registration Number:</label>
+                                        <span id="verified-reg-number" class="mono"></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>Property Address:</label>
+                                        <span id="verified-address"></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>Land Size:</label>
+                                        <span id="verified-size"></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>Land Type:</label>
+                                        <span id="verified-type"></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>Registration Date:</label>
+                                        <span id="verified-date"></span>
+                                    </div>
+                                    <div class="detail-item full-width">
+                                        <label>Block Hash:</label>
+                                        <span id="verified-hash" class="mono"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Certificates Section -->
+                <section id="certificates" class="content-section">
+                    <div class="professional-card main-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-certificate"></i> Certificate Management</h2>
+                            <p>Manage and download your property certificates</p>
+                        </div>
+                        <div id="certificates-list" class="certificates-list">
+                            <!-- Certificates will be populated here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section">
+                    <div class="dashboard-header">
+                        <h2><i class="fas fa-chart-bar"></i> Professional Dashboard & Analytics</h2>
+                        <div class="dashboard-filters">
+                            <input type="text" id="search-properties" class="form-control" placeholder="Search properties...">
+                            <select id="filter-type" class="form-control">
+                                <option value="">All Types</option>
+                                <option value="Residential">Residential</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Agricultural">Agricultural</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Recreational">Recreational</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card professional-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="total-properties">0</div>
+                                <div class="stat-label">Total Properties</div>
+                            </div>
+                        </div>
+                        <div class="stat-card professional-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="verified-properties">0</div>
+                                <div class="stat-label">Verified</div>
+                            </div>
+                        </div>
+                        <div class="stat-card professional-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="recent-registrations">0</div>
+                                <div class="stat-label">This Month</div>
+                            </div>
+                        </div>
+                        <div class="stat-card professional-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="total-certificates">0</div>
+                                <div class="stat-label">Certificates Issued</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Properties Table -->
+                    <div class="professional-card">
+                        <div class="table-header">
+                            <h3>Registered Properties</h3>
+                        </div>
+                        <div class="table-container">
+                            <table id="properties-table">
+                                <thead>
+                                    <tr>
+                                        <th>Registration #</th>
+                                        <th>Owner</th>
+                                        <th>Location</th>
+                                        <th>Size</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Certificate</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="properties-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
